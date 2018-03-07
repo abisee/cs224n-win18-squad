@@ -202,12 +202,12 @@ def get_batch_generator(word2id, context_path, qn_path, ans_path, batch_size, co
         context_ids = padded(context_ids, context_len) # pad contexts to length context_len
 
         # Make qn_ids into a np array and create qn_mask
-        qn_ids = np.array(qn_ids) # shape (question_len, batch_size)
-        qn_mask = (qn_ids != PAD_ID).astype(np.int32) # shape (question_len, batch_size)
+        qn_ids = np.array(qn_ids) # shape (batch_size, question_len)
+        qn_mask = (qn_ids != PAD_ID).astype(np.int32) # shape (batch_size, question_len)
 
         # Make context_ids into a np array and create context_mask
-        context_ids = np.array(context_ids) # shape (context_len, batch_size)
-        context_mask = (context_ids != PAD_ID).astype(np.int32) # shape (context_len, batch_size)
+        context_ids = np.array(context_ids) # shape (batch_size, context_len)
+        context_mask = (context_ids != PAD_ID).astype(np.int32) # shape (batch_size, context_len)
 
         # Make ans_span into a np array
         ans_span = np.array(ans_span) # shape (batch_size, 2)
